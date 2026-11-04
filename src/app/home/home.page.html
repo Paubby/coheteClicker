@@ -1,20 +1,187 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [class.vista-cohete]="vistaActual == 'cohete'" [class.vista-gasolinera]="vistaActual == 'gasolinera'">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Alex</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+   <!-- ============ NÚMEROS FLOTANTES ============ -->
+  @for (flotante of flotantes(); track flotante.id) {
+    <div class="flotante" [style.left.px]="flotante.x" [style.top.px]="flotante.y">
+      <span class="cifra-monedas">{{ flotante.monedas }}</span>
+      <span class="cifra-dano">{{ flotante.dano }}</span>
+    </div>
+  }
+
+  <audio #audioBackground autoplay loop muted>
+    <source src="../../assets/img/músicaFondoClicker.mp3" type="audio/mp3">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  @if (vistaActual == 'mina') {
+
+    <!-- ============ VISTA MINA ============ -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>
+              Llevas : {{ MostrarMoneda(mumero_conta) }} de hierro
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="openShop()">Shop</ion-button>
+
+              
+                
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col id="img_horno">
+              <img (click)="quemarHierro($event)" [class.bloqueado]="cantidadHorno < 1"
+                   src="../../assets/img/Furnace_(S)_JE4.png">
+              <p id="textLingotes">Lingotes de hierro: {{ MostrarMoneda(num_lingotes) }}</p>
+            </ion-col>
+            <ion-col id="img_central">
+              <img (click)="contador($event)" src="../../assets/img/minaHierro.png" alt="">
+            </ion-col>
+            <ion-col>
+              <div id="mejoras_compradas">
+                <h3>Mejoras Compradas: </h3>
+                @if (cantidadReforPic > 0 ){ 
+                  <p>Reforzar Pico Comprado {{cantidadReforPic}} veces</p>
+                }
+                @if(cantidadCarretillas){
+                  <p>Carretilla Para Hierro Comprada</p>
+                }
+                @if(cantidadReforTaladro > 0){
+                  <p>Reforzar Taladro Comprado {{cantidadReforTaladro}} veces</p>
+                }
+                @if (cantidadHorno > 0){
+                  <p>Horno Para Fundir Hierro Comprado</p>
+                }
+                @if (HornoMejorado > 0){
+                  <p>Horno Mejorado Comprado</p>
+                }
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-button (click)="irACohete()">Ver cohete</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  } @else if (vistaActual == 'cohete') {
+
+    <!-- ============ VISTA COHETE ============ -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <ion-col>
+              Lingote de Hierro: {{ MostrarMoneda(num_lingotes) }}
+            </ion-col>
+            <ion-col>
+              Chatarra : {{ MostrarMoneda(num_chatarra) }}
+            </ion-col>
+            <ion-col><ion-button (click)="openShop('chatarra')">Shop</ion-button></ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col id="img_central">
+              @if(num_chatarra < 150){
+                <img (click)="construirCohete($event)" src="../../assets/img/PrimeraFaseCohete-removebg-preview.png" alt="">
+              }@else if (num_chatarra < 300){
+                <img (click)="construirCohete($event)" src="../../assets/img/SegundaFaseCohete-removebg-preview.png" alt="">
+              }@else if (num_chatarra < 700){
+                <img (click)="construirCohete($event)" src="../../assets/img/TerceraFaseCohete-removebg-preview.png" alt="">
+              }@else if (num_chatarra < 1000){
+                <img (click)="construirCohete($event)" src="../../assets/img/CuartaFaseCohete-removebg-preview.png" alt="">
+              }@else {
+                <img src="../../assets/img/CuartaFaseCohete-removebg-preview.png" alt="">
+              }
+            </ion-col>
+            <ion-col>
+              <div id="mejoras_compradas">
+                <h3>Mejoras Compradas: </h3>
+                @if(cantidadHerramienta > 0){
+                  <p>Reforzar Cohete Comprado {{cantidadHerramienta}} veces</p>
+                }
+                @if (cantidadBrazoRobotico > 0){
+                  <p>Brazo Robotico Comprado {{cantidadBrazoRobotico}} veces</p>
+                }
+                @if (cantidadHerraAhorradora > 0){
+                  <p>Herramienta Ahorradora Comprado {{cantidadHerraAhorradora}} veces</p>
+                }
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <p>Progreso del cohete: {{ progresoCohete }}%</p>
+          <ion-progress-bar [value]="progresoCohete / 100"></ion-progress-bar>
+
+          <ion-button (click)="irAMina()">Volver a minar</ion-button>
+          <ion-button (click)="irAGasolinera()">Ir a Gasolinera</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  } @else if (vistaActual == 'gasolinera'){
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>
+              Llevas : {{ MostrarMoneda(clicksCV) }} de dinero
+            </ion-col>
+            <ion-col><ion-button (click)="openShop('dinero')">Shop</ion-button></ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col id="img_horno">
+              <img (click)="chambear($event)" src="../../assets/img/CVclicker.png">
+            </ion-col>
+            <ion-col id="img_central">
+              <img (click)="pagarGasolina($event)" src="../../assets/img/surtidorGasolinaClicker.png" alt="">
+              <p>Gasolina en posesion: {{ MostrarMoneda(clicksGasolina) }}</p>
+            </ion-col>
+            
+            <ion-col>
+              <p id="precio_gasolina">precio Gasolina: {{precioGasolina}}</p>
+                <div id="mejoras_compradas">
+                  <h3>Mejoras Compradas: </h3>
+                  @if(curriculumMejor > 0){
+                    <p>Curriculum Mejorado Comprado {{curriculumMejor}} veces</p>
+                  }
+                  @if (experienciaLaboral > 0){
+                    <p>Experiencia Laboral Comprado {{experienciaLaboral}} veces</p>
+                  }
+                  @if(ayudaGobiero > 0){
+                    <p>Ayuda del Gobierno Comprado </p>
+                  }
+                  @if (bombaCombustible > 0){
+                    <p>Bomba de Combustible Comprado </p>
+                  }
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <p>Gasolina necesaria: {{ progresoGasolina }}%</p>
+                <ion-progress-bar [value]="progresoGasolina / 100"></ion-progress-bar>
+          </ion-row>
+          <ion-button (click)="irACohete()">Ver cohete</ion-button>
+          <ion-button (click)="irAMina()">Ver mina</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  } @else if (vistaActual == 'final') {
+    <div class="pantalla-final">
+      <video src="../../assets/img/VideaoFInalClicker.mp4"  autoplay playsinline></video>
+      <ion-button (click)="irACohete()">Seguir jugando</ion-button>
+    </div>
+  }
+
 </ion-content>

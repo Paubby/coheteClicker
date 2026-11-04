@@ -1,0 +1,7 @@
+{
+  "name": "coeteCicker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -341,7 +341,8 @@ get progresoGasolina(): number {
     console.log("estas pobre");
   }
 
-  setTimeout(() => window.location.reload(), 1000);
+  // setTimeout(() => window.location.reload(), 1000);
+  setTimeout(() => this.cdr.detectChanges(), 1000);
 }
 
   contador(evento?: MouseEvent){

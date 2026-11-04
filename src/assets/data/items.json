@@ -1,0 +1,102 @@
+
+{
+    "upgrade": [
+        {
+            "name": "Minería de hierro",
+            "currency": "Hierro",
+            "upgrades": [
+                {
+                    "name": "Reforzar Pico",
+                    "description": "Aumenta la cantidad de hierro que consigues por cada clic.",
+                    "price": 50,
+                    "icon": ""
+                },
+                {
+                    "name": "Carretilla Para Hierro",
+                    "description": "Automatiza parte de la extracción y consigue hierro cada segundo.",
+                    "price": 150,
+                    "icon": ""
+                },
+                {
+                    "name": "Taladro industrial",
+                    "description": "Aumenta considerablemente la cantidad de hierro que consigues por cada clic.",
+                    "price": 400,
+                    "icon": ""
+                },
+                {
+                    "name": "Horno de fundición",
+                    "description": "Transforma la mena de hierro en lingotes de hierro, necesarios para construir el cohete.",
+                    "price": 1000,
+                    "icon": ""
+                },
+                {
+                    "name": "Horno Mejorado",
+                    "description": "Transforma la mena de hierro en lingotes de hierro mucho más rápido.",
+                    "price": 1500,
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "name": "Construcción del cohete",
+            "currency": "Chatarra",
+            "upgrades": [
+                {
+                    "name": "Herramientas",
+                    "description": "Agiliza la construcción del cohete y aumenta la chatarra obtenida por cada clic.",
+                    "price": 100,
+                    "icon": ""
+                },
+                {
+                    "name": "Brazo robótico",
+                    "description": "Automatiza parte del ensamblaje y genera chatarra automáticamente.",
+                    "price": 500,
+                    "icon": ""
+                },
+                {
+                    "name": "Herramienta Ahorradora",
+                    "description": "Permite que la construcción de tu coehete cueste menos Mena de Hierro.",
+                    "price": 700,
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "name": "Trabajo y combustible",
+            "currency": "Dinero",
+            "secondaryCurrency": "Gasolina",
+            "upgrades": [
+                {
+                    "name": "Currículum mejorado",
+                    "description": "Aumenta el dinero que consigues por cada clic al enviar tu currículum.",
+                    "price": 150,
+                    "icon": ""
+                },
+                {
+                    "name": "Experiencia laboral",
+                    "description": "Mejora tus oportunidades laborales y aumenta tus ganancias.",
+                    "price": 500,
+                    "icon": ""
+                },
+                {
+                    "name": "Ayuda del Gobierno",
+                    "description": "Bajan los preciós de la gasolina DRASTICAMENTE.",
+                    "price": 1500,
+                    "icon": ""
+                },
+                {
+                    "name": "Bomba de combustible avanzada",
+                    "description": "Mejora el repostaje y aumenta la gasolina obtenida en cada clic.",
+                    "price": 2000,
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "name": "Viaje a la Luna",
+            "currency": "Gasolina",
+            "upgrades": [],
+            "goal": "Llegar a la Luna"
+        }
+    ]
+}

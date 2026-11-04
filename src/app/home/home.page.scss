@@ -1,3 +1,17 @@
+ion-content {
+  --background: url('../../assets/img/FondoMina.jpg') center / cover no-repeat;
+}
+
+ion-content.vista-cohete {
+  /* ===== FONDO DEL COHETE ===== */
+  --background: url('../../assets/img/FondoIMGconstruccionCohete.jpg') center / cover no-repeat;
+}
+
+ion-content.vista-gasolinera {
+  /* ===== FONDO DEL COHETE ===== */
+  --background: url('../../assets/img/fondoGasolineraClicker.jpg') center / cover no-repeat;
+}
+
 #container {
   text-align: center;
 
@@ -10,7 +24,7 @@
 
 #container strong {
   font-size: 20px;
-  line-height: 26px;
+  line-size: 26px;
 }
 
 #container p {
@@ -18,10 +32,134 @@
   line-height: 22px;
 
   color: #8c8c8c;
-
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
+}
+
+ion-col {
+  // border: solid 1px #fff;
+  text-align: center;
+}
+
+#img_central {
+  width: 100%;
+  height: calc(100vh - 220px);
+}
+
+#img_horno img.bloqueado {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* SOLO VISTA COHETE */
+ion-content.vista-cohete #img_horno,
+ion-content.vista-cohete #img_central {
+  display: flex;
+  height: calc(100vh - 220px);
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 500px; /* Cambia este valor por el límite máximo que prefieras (ej. 250px, 400px, etc.) */
+    max-width: 200%;   /* Evita que se salga del ancho de la pantalla */
+    object-fit: contain; /* Asegura que la imagen mantenga su proporción original */
+  }
+}
+
+#precio_gasolina {
+    font-size: 1.2rem;
+    color: #f09e0f;
+    text-shadow: 1px 1px 3px #000;
+    width: fit-content;             /* Ajusta el ancho al contenido */
+    margin: 0 auto;                 /* Centra horizontalmente */
+    text-align: center;             /* Centra el texto */
+    padding: 10px;                 /* Espacio interior (puedes cambiar los píxeles a tu gusto) */
+    border-radius: 12px;           /* Esquinas redondeadas */
+    background-color: #2b2b2b;     /* Opcional: un color de fondo para que se note */
+    border: 2px solid #5a3d28;
+  }
+
+/* ====== SOLO VISTA GASOLINERA: imágenes centradas ====== */
+ion-content.vista-gasolinera #img_horno,
+ion-content.vista-gasolinera #img_central {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 220px);
+}
+
+/* ====== NÚMEROS FLOTANTES ====== */
+.flotante {
+  position: fixed;                    /* OBLIGATORIO: clientX/clientY son de la pantalla */
+  transform: translate(-50%, -50%);   /* que salga centrado en el punto del clic */
+  pointer-events: none;               /* que no tape los clics */
+  z-index: 999;
+  font-weight: bold;
+  text-align: center;
+  animation: subirFlotante 0.9s ease-out forwards;
+}
+
+.cifra-monedas {
+  font-family: 'Pixelify Sans', monospace;
+  display: block;
+  font-size: 20px;                      /* era 24px */
+  color: #ffe600;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.cifra-dano {
+  display: block;
+  font-size: 13px;                      /* era 16px */
+  color: #ff4d4d;
+}
+
+@keyframes subirFlotante {
+  0%   { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -160%); }
+}
+
+// progres bar
+
+ion-progress-bar {
+  --background: #e0e0e0;             // Color de fondo de la pista (track)
+  --progress-background: #3f51b5;    // Color de la barra de progreso
+  --buffer-background: #c5cae9;      // Color del búfer (si lo usas)
+  
+  height: 8px;                       // Altura de la barra
+  border-radius: 4px;                // Bordes redondeados
+  overflow: hidden;                  // Asegura que respete el border-radius
+}
+
+// mejoras en html
+// temporal
+#mejoras_compradas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 1px;
+  background-color: rgba(87, 86, 86, 0.7);
+}
+
+/* ====== VÍDEO FINAL ====== */
+.pantalla-final {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 1000;
+}
+
+.pantalla-final video {
+  width: min(92vw, 900px);
+  max-height: 75vh;
+  border: 4px solid #fff;
 }

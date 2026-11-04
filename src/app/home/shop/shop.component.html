@@ -1,0 +1,52 @@
+<ion-content>
+  <ion-grid class="gridShopGeneral" [class.shop-cohete]="moneda === 'chatarra'" [class.shop-gasolinera]="moneda === 'dinero'">
+    <!-- Cabecera -->
+    <ion-row class="rowTitle">
+      <ion-col size="2" class="col">
+        <ion-icon name="rocket-sharp" class="iconRock"></ion-icon>
+      </ion-col>
+      <ion-col size="5" class="col">
+        <h1>TIENDA</h1>
+      </ion-col>
+      <ion-col size="5" class="col" style="justify-content: flex-end;">
+        <p style="margin: 0;">
+          {{ moneda === 'chatarra' ? 'Chatarra' : moneda === 'dinero' ? 'Dinero' : 'Hierro' }}: 
+          <strong>{{ numClics }}</strong>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <!-- Lista de Mejoras -->
+    @for (categoria of itemsData; track categoria.name) {
+      @for (upgrade of categoria.upgrades; track upgrade.name) {
+        <ion-row class="rowItem">
+          <!-- Nombre de la mejora -->
+          <ion-col size="4" class="col upgrade-name">
+            {{ upgrade.name }}
+          </ion-col>
+          
+          <!-- Descripción -->
+          <ion-col size="3" class="col descripcion">
+            {{ upgrade.description }}
+          </ion-col>
+          
+          <!-- Precio -->
+          <ion-col size="2" class="col upgrade-price">
+            {{ upgrade.price }} {{ categoria.currency }}
+          </ion-col>
+          
+          <!-- Botón de compra -->
+          <ion-col size="3" class="col colCerr">
+            <ion-button 
+              class="btn-comprar" 
+              size="small" 
+              (click)="buyUpgrade(upgrade)" 
+              [disabled]="numClics < upgrade.price">
+              Comprar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      }
+    }
+  </ion-grid>
+</ion-content>

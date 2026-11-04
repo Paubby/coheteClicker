@@ -1,0 +1,80 @@
+/* Fondo general por defecto o de la mina */
+.gridShopGeneral {
+    width: 100%;
+    min-height: 100vh;
+    padding: 16px;
+    background: url('../../../assets/img/fondoShopMina.jpg') center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fondo específico para la tienda del Cohete (Chatarra) */
+.gridShopGeneral.shop-cohete {
+    background: url('../../../assets/img/fondoShopCoheteCopia.jpg') center / cover no-repeat;
+}
+
+/* Fondo específico para la tienda de la Gasolinera (Dinero) */
+.gridShopGeneral.shop-gasolinera {
+    background: url('../../../assets/img/fondoShopGasolinera.jpg') center / cover no-repeat; /* Cambia por la ruta de tu imagen de la tienda de la gasolinera */
+}
+
+/* Estilos comunes limpios para las filas de la tienda */
+.rowTitleShop {
+    background: rgba(20, 15, 10, 0.85);
+    border: 2px solid #5a3d28;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+    color: #f39c12;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+
+    h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px #000;
+    }
+}
+
+.rowItemShop {
+    background: rgba(30, 20, 15, 0.85);
+    border: 2px solid #4a321f;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
+
+.colShop {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.upgrade-name {
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+.upgrade-price {
+    color: #e67e22;
+    font-weight: bold;
+}
+
+.descripcion-shop {
+    font-size: 0.8rem;
+    color: #bdc3c7;
+    font-style: italic;
+}
+
+.btn-comprar {
+    --background: #27ae60;
+    --background-hover: #2ecc71;
+    --background-activated: #1e8449;
+    --border-radius: 4px;
+    font-weight: bold;
+}

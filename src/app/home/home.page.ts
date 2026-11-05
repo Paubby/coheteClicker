@@ -438,6 +438,9 @@ construirCohete(evento?: MouseEvent) {
     } else {
       this.MostratMensaje('Te faltan lingotes, ve a minar');
     }
+
+    this.comprobarFinal();
+
   } else if (this.cantidadHerraAhorradora >= 1) {
       if (this.num_lingotes >= precioLingotesReducido) {
       this.num_chatarra = this.num_chatarra + 1 + this.extraClicksCohete;
@@ -468,6 +471,7 @@ iniciarBrazoRobotico() {
   this.intervalIdBrazo = setInterval(() => {
     this.num_chatarra++
     this.updateLocalStorageChatarra();
+    this.comprobarFinal();
     this.cdr.detectChanges();
   }, 1000);
 }
@@ -510,10 +514,7 @@ pagarGasolina(evento?: MouseEvent){
   }
 
   // ===== VÍDEO FINAL: gasolina al MÁXIMO (2000) =====
-    if (this.clicksGasolina >= 2000 && this.vistaActual !== 'final') {
-      this.vistaActual = 'final';
-      localStorage.setItem("vista", this.vistaActual);
-    }
+    this.comprobarFinal();
     
   }
 }
@@ -608,6 +609,16 @@ crearFlotante(x: number, y: number, texto: string, texto2: string = '') {
     fuente.connect(ganancia);
     ganancia.connect(ctx.destination);
     fuente.start();                             // suena una vez, bien sincronizado
+  }
+
+   // ----- VIDEO FINAL: solo con GASOLINA al 2000 + CHATARRA >= 2000 -----
+  comprobarFinal() {
+    if (this.clicksGasolina >= 2000 &&
+        this.num_chatarra >= 2000 &&
+        this.vistaActual !== 'final') {
+      this.vistaActual = 'final';
+      localStorage.setItem("vista", this.vistaActual);
+    }
   }
 }
 
